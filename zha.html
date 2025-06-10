@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>把渣男挂网上</title>
+    <link rel="stylesheet" type="text/css" href="250519.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="250514.html">首页</a></li>
+            <li><a href="/">渣吴页</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <script>
+        // 获取导航栏的所有列表项
+        const navItems = document.querySelectorAll('nav ul li');
+
+        // 为每个列表项添加点击事件
+        navItems.forEach((item) => {
+            item.addEventListener('click', function () {
+                // 移除所有列表项的样式（如果有）
+                navItems.forEach((i) => {
+                    i.style.backgroundColor = '';
+                });
+
+                // 为当前点击的列表项添加样式
+                this.style.backgroundColor = '#555';
+            });
+        });
+    </script>
+    <!-- 图片容器 -->
+    <div id="image-container">
+        <img src="./图片/吴1.jpg" alt="图片1" class="image active">
+        <img src="./图片/吴2.jpg" alt="图片2" class="image">
+        <img src="./图片/吴3.jpg" alt="图片3" class="image">
+        <button id="prev-btn" class="btn">上一张</button>
+        <button id="next-btn" class="btn">下一张</button>
+        <div class="vertical-marquee">
+            <div class="vertical-item">吴衡大渣男！</div>
+            <div class="vertical-item">吴衡大渣男！</div>
+            <div class="vertical-item">吴衡大渣男！</div>
+            <!--复制内容-->
+            <div class="vertical-item">吴衡大渣男！</div>
+            <div class="vertical-item">吴衡大渣男！</div>
+            <div class="vertical-item">吴衡大渣男！</div>
+        </div>
+    </div>
+    <script>
+        // 获取所有图片元素和按钮元素
+        const images = document.querySelectorAll('.image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentIndex = 0;
+
+        // 显示指定索引的图片
+        function showImage(index) {
+            images.forEach((img, i) => {
+                if (i === index) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+        }
+
+        // 切换到下一张图片
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        // 切换到上一张图片
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        // 自动切换图片
+        let autoInterval = setInterval(nextImage, 3000);
+
+        // 点击上一张按钮事件
+        prevBtn.addEventListener('click', () => {
+            clearInterval(autoInterval);
+            prevImage();
+            autoInterval = setInterval(nextImage, 3000);
+        });
+
+        // 点击下一张按钮事件
+        nextBtn.addEventListener('click', () => {
+            clearInterval(autoInterval);
+            nextImage();
+            autoInterval = setInterval(nextImage, 3000);
+        });
+
+        // 初始化显示第一张图片
+        showImage(currentIndex);
+    </script>
+    </main>
+
+    
+
+    <!-- 页脚 -->
+    <footer>
+        &copy; 2025 版权所有
+    </footer>
+</body>
+</html>
